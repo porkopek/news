@@ -1,5 +1,19 @@
 body {
   margin: 0;
-  padding: 0;
+  
   font-family: sans-serif;
+  background-color: #deded5;
+  font-family: 'Segoe UI' !important;
+}
+a{
+  color:#00ab6b;
+}
+*{
+  box-sizing: border-box;
+}
+h1, h2,h3{
+  font-family: 'Segoe UI' !important;
+}
+.borderless{
+  border:none !important;
 }
