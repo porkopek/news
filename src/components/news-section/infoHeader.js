@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Image, Card, Feed, Icon } from 'semantic-ui-react'
+import React from 'react'
+import {   Feed } from 'semantic-ui-react'
 
 export function InfoHeader ({avatar, user, url, date}){
  const index = url.includes('www') ? 2 : 1
@@ -10,7 +10,7 @@ export function InfoHeader ({avatar, user, url, date}){
       <Feed>
         <Feed.Event>
           <Feed.Label>
-            <img src={avatar} />
+            <img alt={user} src={avatar} />
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>

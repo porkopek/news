@@ -1,9 +1,7 @@
 import React from 'react'
 
 import { Label } from 'semantic-ui-react'
-function renderComments(commentsUrl, comments){
- 
-}
+
 export function CommentsInfo({commentsUrl, comments}){
   function renderComments(){
     return(

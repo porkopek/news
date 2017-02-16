@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Image, Menu, Icon, Label, Container } from 'semantic-ui-react'
+import { Card, Icon, Label, Container } from 'semantic-ui-react'
 
 import  { InfoHeader } from './InfoHeader'
 import { NewsContent } from './NewsContent'
@@ -81,13 +81,13 @@ export default class NewsSection extends Component {
 
       {this.state.news.map((news, index)=>{
         const { avatar, user, url, date, image, title, description, likes, liked, commentsUrl, comments} = news
-        return (<Card fluid key={index} index={index}>
+        return (<Card fluid key={index}>
 
           <Card.Content>
             <Card.Header>
               <InfoHeader 
                 avatar={avatar}
-                user ={user}
+                user={user}
                 url={url}
                 date={date}
               />
@@ -115,7 +115,7 @@ export default class NewsSection extends Component {
 
             <CommentsInfo
               commentsUrl={commentsUrl}
-              comments = {comments}
+              comments={comments}
             />
 
             <Label className='right floated borderless' as='a'basic>
