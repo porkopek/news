@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import { Image, Card, Feed, Icon } from 'semantic-ui-react'
 
-export default class InfoHeader extends Component{
-
-  render(){
+export function InfoHeader ({avatar, user, url, date}){
+ const index = url.includes('www') ? 2 : 1
+ const originalDomain=[url.split(/[\/.]/).filter(x=>x!=='')[index].toUpperCase()]
+ 
+  
     return(
       <Feed>
         <Feed.Event>
           <Feed.Label>
-            <img src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+            <img src={avatar} />
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
-                <a>Elliot Fu</a> in <a>Translation Hacks</a>
-              <Feed.Date>1 Hour Ago</Feed.Date>
+              <a className='link-color'>{user}</a> in <a href={url}className='link-color'>{originalDomain}</a>
+              <Feed.Date>
+                {date}
+              </Feed.Date>
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
       </Feed>
     )
-  }
+   
 }

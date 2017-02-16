@@ -1,12 +1,12 @@
 body {
   margin: 0;
-  
+  min-height: 200vh;
   font-family: sans-serif;
   background-color: #deded5;
   font-family: 'Segoe UI' !important;
 }
-a{
-  color:#00ab6b;
+a, a:hover{
+  color:inherit;
 }
 *{
   box-sizing: border-box;
@@ -16,4 +16,10 @@ h1, h2,h3{
 }
 .borderless{
   border:none !important;
+}
+.link-color, .link-color:hover{
+  color:#00ab6b;
+}
+.outline{
+  transition:all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
