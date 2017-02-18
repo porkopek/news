@@ -1,55 +1,16 @@
 import React, { Component } from 'react'
 import { Card, Icon, Label, Container } from 'semantic-ui-react'
+import axios from 'axios'
 
 import  { InfoHeader } from './InfoHeader'
 import { NewsContent } from './NewsContent'
 import { LikesInfo } from './LikesInfo'
 import { CommentsInfo} from './CommentsInfo'
+import { BookmarkInfo } from './BookmarkInfo'
 export default class NewsSection extends Component {
   state={
     news:[
-      {
-        avatar:'http://www.abc.net.au/homepage/2013/styles/img/apple-touch-icon-144x144.png',
-        user:'PorkoPek',
-        url:'http://www.iberotradutores.com',
-        date:'2 hours ago',
-        image:'http://www.abc.net.au/news/image/8235564-1x1-700x700.jpg',
-        title:'Translation app helping to preserve endangered Indigenous Queensland languages ',
-        description:'A unique partnership between a linguist, an app designer, and a remote Aboriginal community is helping to ensure the survival of a rare Indigenous language.',
-        likes:4,
-        liked:false,
-        commentsUrl:'http://www.iberotradutores.com',
-        comments:1,
-        bookmarked:false,
-      },
-      {
-      avatar:'https://s-media-cache-ak0.pinimg.com/736x/3b/7d/6f/3b7d6f60e2d450b899c322266fc6edfd.jpg',
-      user:'Luski',
-      url:'http://www.iberotradutores.com',
-      date:'yesterday',
-      image:'https://cdn-images-1.medium.com/max/2000/1*Ym-UxxiSUR5XJ3DGY5Z6tA.jpeg',
-      title:'Translation app helping to preserve endangered Indigenous Queensland languages ',
-      description:'A unique partnership between a linguist, an app designer, and a remote Aboriginal community is helping to ensure the survival of a rare Indigenous language.',
-      likes:5,
-      liked:true,
-      commentsUrl:'http://www.iberotradutores.com',
-      comments:0,
-      bookmarked:false,
-    },
-    {
-      avatar:'https://s-media-cache-ak0.pinimg.com/736x/3b/7d/6f/3b7d6f60e2d450b899c322266fc6edfd.jpg',
-      user:'Luski',
-      url:'https://dz2cdn3.dzone.com/storage/article-thumb/4350062-thumb.jpg',
-      date:'yesterday',
-      image:'https://dz2cdn3.dzone.com/storage/article-thumb/4350062-thumb.jpg',
-      title:'Why You Should Focus on iOS Localization - DZone Mobile',
-      description:'When you start your app localization project, it can be hard to know where to begin. Stop stalling and start with iOS.',
-      likes:1,
-      liked:false,
-      commentsUrl:'http://www.iberotradutores.com',
-      comments:11,
-      bookmarked:true,
-    },
+      
     {
       avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png',
       user:'Luski',
@@ -73,6 +34,56 @@ export default class NewsSection extends Component {
     news[index].likes+=news[index].liked ? 1 : -1
     this.setState({news})
   }
+  getNews2=()=>{
+    axios.get('https://newsapi.org/v1/sources')
+         .then(res=>{
+           const sources = res.data.sources.filter(source=>source.language==='en').map(source=>source.id)
+          return sources
+           
+         })
+         .then(sources=>{
+            let news=[]
+            sources.forEach(source=>{
+              axios.get(`https://newsapi.org/v1/articles?source=${source}&apiKey=8bdeeeb9818b4b61908164a27f5b300b`)
+                   .then(res=>{
+                        
+                      news.push(...res.data.articles)                   
+                   })
+                   .catch(err=>alert(err))
+                  
+              
+            })
+            .then(news=>console.log(news))
+           const stateNews=news
+           console.log(stateNews)
+         })
+  }
+  getNews=()=>{
+    axios.get(`https://newsapi.org/v1/articles?source=associated-press&apiKey=8bdeeeb9818b4b61908164a27f5b300b`)
+    .then(res=>{
+      const news = res.data.articles.map(article=>({
+
+        title:article.title,
+        url:article.url,
+        image:article.urlToImage,
+        user: article.author,
+        description:article.description,
+        date:article.publishedAt,
+        likes: Math.random()*50 |0,
+        comments: Math.random()*50 |0,
+        liked: Math.random()*2|0 === 1 ? true : false,
+        bookmarked: Math.random()*2|0 === 1 ? true : false,
+        avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png'
+
+      }))
+      this.setState({news})
+    })
+  }
+  componentDidMount=()=>{
+    const news = this.getNews()
+   
+    
+  }
   render() {
   
     return (
@@ -80,7 +91,7 @@ export default class NewsSection extends Component {
       <Container text>
 
       {this.state.news.map((news, index)=>{
-        const { avatar, user, url, date, image, title, description, likes, liked, commentsUrl, comments} = news
+        const { avatar, user, url, date, image, title, description, likes, liked, commentsUrl, comments, bookmarked} = news
         return (<Card fluid key={index}>
 
           <Card.Content>
@@ -121,10 +132,10 @@ export default class NewsSection extends Component {
             <Label className='right floated borderless' as='a'basic>
                <Icon name='ellipsis vertical' />
             </Label>
-
-            <Label as='a' basic className='right floated borderless'>
-                <Icon name='bookmark outline' /> 
-            </Label>
+            <BookmarkInfo
+              bookmarked={bookmarked}
+            />
+           
 
           </Card.Content>
         </Card>)
