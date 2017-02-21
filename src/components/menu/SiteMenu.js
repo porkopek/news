@@ -4,20 +4,21 @@ import { Container, Menu, Icon} from 'semantic-ui-react'
 
 export function SiteMenu (){
     return(
-      <Menu style={{boxShadow:'none'}}borderless size='mini' icon='labeled'>
-          <Container text>
-          <Menu.Item name='medium'>
-            <Icon color='green' name='leaf' />
-           <span>News </span> 
+      
+      <Menu  borderless  fixed='top' icon='labeled'>
+          <Container >
+          <Menu.Item >
+           
+            <span>News </span> 
           </Menu.Item>
 
-          <Menu.Item name='video camera' >
-            <Icon color='red'name='quote right' />
+          <Menu.Item  >
+          
             Insights
           </Menu.Item>
 
-          <Menu.Item name='video camera' >
-            <Icon color='blue' name='pencil' />
+          <Menu.Item  >
+          
             Authors
           </Menu.Item>
 

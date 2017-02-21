@@ -1,3 +1,4 @@
+ 
 import React, { Component } from 'react'
 import { Card, Icon, Label, Container } from 'semantic-ui-react'
 import axios from 'axios'
@@ -7,26 +8,29 @@ import { NewsContent } from './NewsContent'
 import { LikesInfo } from './LikesInfo'
 import { CommentsInfo} from './CommentsInfo'
 import { BookmarkInfo } from './BookmarkInfo'
-export default class NewsSection extends Component {
-  state={
-    news:[
+type State={
+news:[
       
     {
-      avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png',
-      user:'Luski',
-      url:'https://hbr.org/2016/09/your-writing-isnt-as-good-as-you-think-it-is?platform=hootsuite',
-      date:'yesterday',
-      image:'https://hbr.org/resources/images/article_assets/2016/09/sept16-28-184294405-1200x675.jpg',
-      title:'Your Writing Isn’t as Good as You Think It Is ',
-      description:'Four ways to get better.',
-      likes:0,
-      liked:false,
-      commentsUrl:'http://www.iberotradutores.com',
-      comments:0,
-      bookmarked:true,
+      avatar:string,
+      user:string,
+      url:string,
+      date:date,
+      image:string,
+      title:string,
+      description:string,
+      likes:number,
+      liked:boolean,
+      commentsUrl:string,
+      comments:number,
+      bookmarked:boolean,
       },
     ]
 
+}
+export default class NewsSection extends Component {
+  state:State={
+    news:[]
   }
   like=(index)=>{
     const news = this.state.news.slice()
@@ -58,29 +62,28 @@ export default class NewsSection extends Component {
            console.log(stateNews)
          })
   }
-  getNews=()=>{
-    axios.get(`https://newsapi.org/v1/articles?source=associated-press&apiKey=8bdeeeb9818b4b61908164a27f5b300b`)
+  getNews=(source, subject)=>{
+    axios.get(`https://newsapi.org/v1/articles?source=${source}&apiKey=8bdeeeb9818b4b61908164a27f5b300b`)
     .then(res=>{
-      const news = res.data.articles.map(article=>({
-
-        title:article.title,
-        url:article.url,
-        image:article.urlToImage,
-        user: article.author,
-        description:article.description,
-        date:article.publishedAt,
-        likes: Math.random()*50 |0,
-        comments: Math.random()*50 |0,
-        liked: Math.random()*2|0 === 1 ? true : false,
-        bookmarked: Math.random()*2|0 === 1 ? true : false,
-        avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png'
-
-      }))
+      const news = res.data.articles.filter(article=>article.title.toLowerCase().includes(subject.toLocaleLowerCase()))
+                                    .map(article=>({
+                                        title: article.title,
+                                        url:article.url,
+                                        image:article.urlToImage,
+                                        user: article.author,
+                                        description: article.description && article.description.substring(0,90),
+                                        date:article.publishedAt,
+                                        likes: Math.random()*50 |0,
+                                        comments: Math.random()*50 |0,
+                                        liked: Math.random()*2|0 === 1 ? true : false,
+                                        bookmarked: Math.random()*2|0 === 1 ? true : false,
+                                        avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png'
+                                      }))
       this.setState({news})
     })
   }
   componentDidMount=()=>{
-    const news = this.getNews()
+    const news = this.getNews('fortune', '')
    
     
   }
@@ -91,8 +94,22 @@ export default class NewsSection extends Component {
       <Container text>
 
       {this.state.news.map((news, index)=>{
-        const { avatar, user, url, date, image, title, description, likes, liked, commentsUrl, comments, bookmarked} = news
-        return (<Card fluid key={index}>
+        const { avatar,
+                user,
+                url,
+                date,
+                image,
+                title,
+                description,
+                likes,
+                liked,
+                commentsUrl,
+                comments,
+                bookmarked
+        } = news
+        return (
+        
+        <Card fluid key={index}>
 
           <Card.Content>
             <Card.Header>
@@ -104,7 +121,7 @@ export default class NewsSection extends Component {
               />
             </Card.Header>
 
-            <a  src={''}>
+            <a  href={url} target='_blank'>
               <Card.Description>
                 <NewsContent 
                   image={image}
@@ -112,7 +129,7 @@ export default class NewsSection extends Component {
                   description={description}
                 />
               </Card.Description>
-                <span>Read more...</span>
+                <span className='link-color'>Read more...</span>
             </a>
           </Card.Content>
           

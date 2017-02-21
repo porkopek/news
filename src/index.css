@@ -2,8 +2,10 @@ body {
   margin: 0;
   min-height: 200vh;
   font-family: sans-serif;
-  background-color: #deded5;
+  background-color: #fafafa;
   font-family: 'Segoe UI' !important;
+  margin-bottom:50px;
+  padding-top:50px;
 }
 a, a:hover{
   color:inherit;
@@ -19,7 +21,22 @@ h1, h2,h3{
 }
 .link-color, .link-color:hover{
   color:#00ab6b;
+  font-weight: 400;
 }
 .outline{
   transition:all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.ui.label>a {
+  opacity:.9;
+}
+@media (max-width:801px){
+  .hide-on-mobile{
+    display:none;
+  }
+}
+p{
+  font-weight: 400;
+  font-family:'Segoe UI';
+  font-size:1.3em;
+  color:rgba(0,0,0,.44);
 }
