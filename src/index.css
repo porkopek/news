@@ -7,15 +7,23 @@ body {
   margin-bottom:50px;
   padding-top:50px;
 }
+
 a, a:hover{
   color:inherit;
 }
-*{
-  box-sizing: border-box;
-}
-h1, h2,h3{
+
+
+h1, h2, h3 {
   font-family: 'Segoe UI' !important;
 }
+
+p{
+  font-weight: 400;
+  font-family:'Segoe UI';
+  font-size:1.3em;
+  color:rgba(0,0,0,.44);
+}
+
 .borderless{
   border:none !important;
 }
@@ -29,14 +37,29 @@ h1, h2,h3{
 .ui.label>a {
   opacity:.9;
 }
+.card-image{
+  object-fit: cover;
+  object-position: 25% 25%;
+  max-width: 200px !important;
+  max-height: 150px;
+  margin-left: 20px;
+}
 @media (max-width:801px){
   .hide-on-mobile{
     display:none;
   }
+  .mobile-card-vertical{
+    flex-direction: column-reverse;
+  }
+  .card-image{
+   width:100%;
+   max-width: 100% !important;
+   margin-left: 0;
+   margin-bottom:1em;
+  max-height: 100px;
+  }
+  .ui.container {
+    margin-left:  0.2em !important;
+    margin-right: 0.2em !important;
 }
-p{
-  font-weight: 400;
-  font-family:'Segoe UI';
-  font-size:1.3em;
-  color:rgba(0,0,0,.44);
 }

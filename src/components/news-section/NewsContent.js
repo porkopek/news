@@ -4,7 +4,7 @@ import { Image } from 'semantic-ui-react'
 
 export function NewsContent ({title,description, image}){
   return(
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }} className='mobile-card-vertical'>
       
       <div>
         <h2>{title}</h2>
@@ -13,7 +13,7 @@ export function NewsContent ({title,description, image}){
       
       <div>
         {image
-          && <Image style={{ objectFit: 'cover', objectPosition: '25% 25%', maxWidth:200, maxHeight:150,marginLeft:20 }} src={image} />
+          && <Image className='card-image'src={image} />
         }
       </div>
     </div>
