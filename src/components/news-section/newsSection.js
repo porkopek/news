@@ -91,7 +91,7 @@ export default class NewsSection extends Component {
     })
   }
   componentDidMount=()=>{
-    const news = this.getNews('fortune', '') 
+    const news = this.getNews('google-news', '') 
   }
   toggleMenu=(index)=>{
     
