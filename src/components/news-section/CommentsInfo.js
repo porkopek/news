@@ -5,7 +5,7 @@ import { Label } from 'semantic-ui-react'
 export function CommentsInfo({commentsUrl, comments}){
   function renderComments(){
     return(
-      <Label size='large' as='a' href={commentsUrl} basic className='borderless'>
+      <Label color='grey' size='large' as='a' href={commentsUrl} basic className='borderless'>
        {comments}  {comments>1 ? 'comments' : 'comment'} 
       </Label>
     )

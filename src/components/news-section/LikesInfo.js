@@ -5,12 +5,14 @@ import { Icon, Label } from 'semantic-ui-react'
 export function LikesInfo({ url, likes, liked, onClick }){
   return(
     
-      <Label size='large'  basic className='borderless'>
+      <Label size='large' color='grey' basic className='borderless'>
         <a >
+         
           <Icon
-            className='link-color'
+            color='red'
             onClick={onClick}
             name={`heart${liked ? '': ' outline'}`}
+            
           />
         </a>
         {likes}
