@@ -11,19 +11,21 @@ export function InfoHeader ({avatar, user, url, date}){
         <Feed>
           <Feed.Event>
             
-            <Feed.Label>
+            <Feed.Label >
               <img alt={user} src={avatar} />
             </Feed.Label>
 
-            <Feed.Content>
-              <Feed.Summary style={{fontWeight:300}}>
+            <Feed.Content style={{lineHeight:1.4}}>
+                
+              <Feed.Summary style={{fontWeight:400}}>
                 <a className='link-color'>{user}</a>
                 <span style={{color:'grey', fontWeight:300}}> in  </span> 
                 <a href={url}className='link-color'>{originalDomain}</a>
-                <Feed.Date>
+               <Feed.Date style={{fontSize:'.8em'}}>
                   {date}
-                </Feed.Date>
+              </Feed.Date>
               </Feed.Summary>
+              
             </Feed.Content>
 
           </Feed.Event>

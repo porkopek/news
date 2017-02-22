@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Card, Container } from 'semantic-ui-react'
 import axios from 'axios'
+import faker from 'faker'
 
 import  { InfoHeader } from './InfoHeader'
 import { NewsContent } from './NewsContent'
@@ -9,6 +10,7 @@ import { LikesInfo } from './LikesInfo'
 import { CommentsInfo} from './CommentsInfo'
 import { BookmarkInfo } from './BookmarkInfo'
 import { NewsMenu } from './NewsMenu'
+
 type State={
   news:[
         
@@ -82,7 +84,7 @@ export default class NewsSection extends Component {
                                         comments: Math.random()*50 |0,
                                         liked: Math.random()*2|0 === 1 ? true : false,
                                         bookmarked: Math.random()*2|0 === 1 ? true : false,
-                                        avatar:'http://en.gravatar.com/userimage/103259692/9689dce3957ca0eea49c190dc15fe17f.png',
+                                        avatar:faker.image.avatar(),
                                         menuOpen:false,
                                       }))
       this.setState({news}) //ISto não é aqui

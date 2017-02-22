@@ -2,8 +2,9 @@
   "name": "NEWS",
   "version": "0.1.0",
   "private": true,
-   "homepage": "https://porkopek.github.io/news",
+  "homepage": "https://porkopek.github.io/news",
   "devDependencies": {
+    "faker": "^4.1.0",
     "react-scripts": "0.9.0"
   },
   "dependencies": {
