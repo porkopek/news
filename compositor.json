@@ -1,0 +1,88 @@
+{
+  "name": "porkopek/news",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Swiss",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/SwissHeader",
+      "article": "article/SwissArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "heading": {
+      "fontWeight": 700,
+      "letterSpacing": "-0.01em"
+    },
+    "layout": {
+      "fluid": true
+    },
+    "colors": {
+      "text": "#000",
+      "background": "#fff",
+      "primary": "#05a",
+      "secondary": "#444",
+      "highlight": "#f30",
+      "border": "#ccc",
+      "muted": "#eee"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/porkopek/news",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/NEWS",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "news",
+      "subhead": "React and .Net news site",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "news: React and .Net news site",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "porkopek",
+          "repo": "news"
+        }
+      ],
+      "text": "v0.1.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "<h2>Translation news site</h2>\n<p>Simple Medium like agregator</p>\n<p>Under construction</p>\n<p>See a sketch here <a href=\"https://porkopek.github.io/news/\">https://porkopek.github.io/news/</a></p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/porkopek/news",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/porkopek",
+          "text": "porkopek"
+        }
+      ]
+    }
+  ]
+}
